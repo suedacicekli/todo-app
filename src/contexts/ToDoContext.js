@@ -17,11 +17,23 @@ export const TodoProvider = ({ children }) => {
         setTodos((prev) => [...prev, { id: uuidv4(), completed: false, text }])
 
 
+    //toggleTodo ile checkbox işlemini buradan yapıp diğer componentlerde kullanabiliriz.
+
+    const toggleTodo = (id) => {
+
+        const cloned_todos = [...todos];
+        const itemIndex = cloned_todos.findIndex(todo => todo.id === id);
+        const item = todos[itemIndex];
+        item.completed = !item.completed; //itemcompleted'ın tersini al demiş oluyoruz 
+        setTodos(cloned_todos); // setTodos'a cloned_todos atayarak checkbox'ı aktif hale getirdik.
+
+    }
 
     const values = {
         todos,
         setTodos,
-        addTodo
+        addTodo,
+        toggleTodo,
     };
 
     return <TodoContext.Provider value={values}>{children}</TodoContext.Provider>
