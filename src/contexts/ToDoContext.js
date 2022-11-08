@@ -16,6 +16,8 @@ export const TodoProvider = ({ children }) => {
     const addTodo = (text) =>
         setTodos((prev) => [...prev, { id: uuidv4(), completed: false, text }])
 
+
+
     const values = {
         todos,
         setTodos,
